@@ -9,7 +9,7 @@
          background: #ABFEEF; 
          font-family: 'Poiret One', sans-serif;
        }
-       div#choice_box {
+       .choice_box {
          font-family: 'Russo One', sans-serif;
          position: fixed; 
          top: 50%;
@@ -59,12 +59,22 @@
     </style>
   </head>
   <body>
-    <div id="choice_box" align="center">
-      <h1 id="choice_box_header"><b>Тесты</b></h1>
-      <a href="/test1" class="choice_box_element">Тест 1 (легко)</a><br>
-      <a href="/test2" class="choice_box_element">Тест 2 (нормально)</a><br>
-      <a href="/test3" class="choice_box_element">Тест 3 (сложно)</a><br>
-      <a href="/examination" class="choice_box_element">Экзамен</a><br>
-    </div>
+      <form>
+        <div align="center">
+          <h1>Вопрос 1:</h1>
+          <input type="radio" id="answer_1"  name="choice_box_element1" value="1">
+          <label for="answer_1">Ответ 1</label><br>
+          <input type="radio" id="answer_2"  name="choice_box_element1" value="2">
+          <label for="answer_2">Ответ 2</label><br>
+        </div><br>
+        <div align="center">
+          <h1>Вопрос 2:</h1>
+          <input type="radio" id="answer_1"  name="choice_box_element2" value="1">
+          <label for="answer_1">Ответ 1</label><br>
+          <input type="radio" id="answer_2"  name="choice_box_element2" value="2">
+          <label for="answer_2">Ответ 2</label><br>
+        </div>
+        <div align="center"><button type="submit">Проверить</button></div>
+      </form>
   </body>
 </html>
