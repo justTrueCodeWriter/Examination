@@ -11,7 +11,7 @@
        }
        .choice_box {
          font-family: 'Russo One', sans-serif;
-         position: fixed; 
+         position: sticky; 
          top: 50%;
          left: 50%;
          transform: translate(-50%, -50%);         
@@ -60,20 +60,15 @@
   </head>
   <body>
       <form>
-        <div align="center">
-          <h1>Вопрос 1:</h1>
-          <input type="radio" id="answer_1"  name="choice_box_element1" value="1">
+        {% for question in questions: %}
+        <div align="center" class="choice_box">
+          <h1>{{ question[1] }}</h1>
+          <input type="radio" id="answer_1"  name="choice_box_element{{ question[0] }}" value="1">
           <label for="answer_1">Ответ 1</label><br>
-          <input type="radio" id="answer_2"  name="choice_box_element1" value="2">
+          <input type="radio" id="answer_2"  name="choice_box_element{{ question[0] }}" value="2">
           <label for="answer_2">Ответ 2</label><br>
         </div><br>
-        <div align="center">
-          <h1>Вопрос 2:</h1>
-          <input type="radio" id="answer_1"  name="choice_box_element2" value="1">
-          <label for="answer_1">Ответ 1</label><br>
-          <input type="radio" id="answer_2"  name="choice_box_element2" value="2">
-          <label for="answer_2">Ответ 2</label><br>
-        </div>
+        {% endfor %}
         <div align="center"><button type="submit">Проверить</button></div>
       </form>
   </body>
