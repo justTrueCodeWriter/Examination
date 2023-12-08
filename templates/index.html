@@ -22,10 +22,9 @@
          background: #FFF;
          box-shadow: -6px 4px 4px 0px rgba(0, 0, 0, 0.25);
        }
-       #choice_box_header {
-         display: flex;
+       .choice_box_header {
+         position: relative;
          width: 376px;
-         height: 50px;
          flex-direction: column;
          justify-content: center;
          flex-shrink: 0;
@@ -41,8 +40,6 @@
          display: flex;
          position: relative;
          width: 376px;
-         height: 38px;
-         top: 20%;
          flex-direction: column;
          justify-content: center;
          flex-shrink: 0;
@@ -60,7 +57,9 @@
   </head>
   <body>
     <div id="choice_box" align="center">
-      <h1 id="choice_box_header"><b>Тесты</b></h1>
+      <h1 class="choice_box_header"><b>Теоретический материал</b></h1>
+      <a href="/theory" class="choice_box_element">Теория</a>
+      <h1 class="choice_box_header"><b>Тесты</b></h1>
       <a href="/test1" class="choice_box_element">Тест 1 (легко)</a><br>
       <a href="/test2" class="choice_box_element">Тест 2 (нормально)</a><br>
       <a href="/test3" class="choice_box_element">Тест 3 (сложно)</a><br>

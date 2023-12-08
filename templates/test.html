@@ -11,12 +11,10 @@
        }
        .choice_box {
          font-family: 'Russo One', sans-serif;
-         position: sticky; 
-         top: 50%;
+         position: relative; 
          left: 50%;
-         transform: translate(-50%, -50%);         
+         transform: translate(-50%);         
          width: 636px;
-         height: 701px;
          flex-shrink: 0;
          border-radius: 20px;
          background: #FFF;
@@ -62,7 +60,7 @@
       <form>
         {% for question in questions: %}
         <div align="center" class="choice_box">
-          <h1>{{ question[1] }}</h1>
+          <h1>{{ question[0] }}. {{ question[1] }}</h1>
           <input type="radio" id="answer_1"  name="choice_box_element{{ question[0] }}" value="1">
           <label for="answer_1">Ответ 1</label><br>
           <input type="radio" id="answer_2"  name="choice_box_element{{ question[0] }}" value="2">
