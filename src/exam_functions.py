@@ -7,3 +7,9 @@ def getDataFromDatabase():
     data = cursor.fetchall()
     connect.close();
     return data
+
+def getTheory():
+    file = open("theory.md", "r")   
+    data = file.read()
+    file.close()
+    return data
