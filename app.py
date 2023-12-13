@@ -1,4 +1,4 @@
-from flask import Flask, render_template
+from flask import Flask, render_template, url_for
 from src.exam_functions import getDataFromDatabase, getTheory
 
 app = Flask(__name__)
@@ -9,8 +9,7 @@ def index():
 
 @app.route('/theory')
 def theory():
-    markdown_text = getTheory() 
-    return render_template("theory.html", markdown_text=markdown_text)
+    return render_template("theory.html")
 
 @app.route('/test1')
 def test1():
