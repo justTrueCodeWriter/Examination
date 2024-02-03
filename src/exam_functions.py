@@ -1,15 +1,14 @@
 import sqlite3
 
-def getDataFromDatabase(): 
+def getDataFromDatabaseByQuery(sql_query: str) -> list:
     connect = sqlite3.connect("database.db")
-    cursor = connect.cursor();
-    cursor.execute("select * from questions");
+    cursor = connect.cursor()
+    cursor.execute(f"{sql_query}")
     data = cursor.fetchall()
-    connect.close();
+    connect.close()
     return data
 
-def getTheory():
-    file = open("theory.md", "r")   
-    data = file.read()
-    file.close()
-    return data
+def getDataFromDatabase(difficulty_level: int): 
+    questions = getDataFromDatabaseByQuery(f"select * from questions where difficulty_level={difficulty_level}")
+    answers = getDataFromDatabaseByQuery(f"select * from answers where difficulty_level={difficulty_level}")
+    return questions, answers

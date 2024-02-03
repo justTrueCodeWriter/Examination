@@ -1,5 +1,5 @@
-from flask import Flask, render_template, url_for
-from src.exam_functions import getDataFromDatabase, getTheory
+from flask import Flask, render_template, request
+from src.exam_functions import getDataFromDatabase
 
 app = Flask(__name__)
 
@@ -13,17 +13,25 @@ def theory():
 
 @app.route('/test1')
 def test1():
-    questions = getDataFromDatabase() 
-    return render_template("test.html", questions=questions) 
+    questions, answers = getDataFromDatabase(1) 
+    counter = 0
+    for question in questions:
+        if (request.args.get(f"choice_box_element{question[0]}")==str(question[2])):
+            counter+=1
+    print(counter)
+    return render_template("test.html", questions=questions, answers=answers) 
 
 @app.route('/test2')
 def test2():
-    return render_template("test.html"); 
+    questions, answers = getDataFromDatabase(2) 
+    return render_template("test.html", questions=questions, answers=answers) 
 
 @app.route('/test3')
 def test3():
-    return render_template("test.html"); 
+    questions, answers = getDataFromDatabase(3) 
+    return render_template("test.html", questions=questions, answers=answers) 
 
 @app.route('/examination')
 def examination():
-    return render_template("test.html"); 
+    questions, answers = getDataFromDatabase(4) 
+    return render_template("test.html", questions=questions, answers=answers) 
