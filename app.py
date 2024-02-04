@@ -3,6 +3,8 @@ from src.exam_functions import getDataFromDatabase
 
 app = Flask(__name__)
 
+test_result = 0
+
 @app.route('/')
 def index():
     return render_template("index.html") 
@@ -13,13 +15,18 @@ def theory():
 
 @app.route('/test1')
 def test1():
+    isTestFinished = False
     questions, answers = getDataFromDatabase(1) 
-    counter = 0
+    global test_result
+    test_result = 0
     for question in questions:
+        if (request.args.get(f"choice_box_element{question[0]}")):
+            isTestFinished = True
         if (request.args.get(f"choice_box_element{question[0]}")==str(question[2])):
-            counter+=1
-    print(counter)
-    return render_template("test.html", questions=questions, answers=answers) 
+            test_result+=1
+
+    print(test_result)
+    return render_template("test.html", questions=questions, answers=answers, isTestFinished=isTestFinished, test_result=test_result) 
 
 @app.route('/test2')
 def test2():

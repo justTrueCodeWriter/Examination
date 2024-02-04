@@ -56,21 +56,27 @@
     </style>
   </head>
   <body>
-      <form>
-        {% for question in questions: %}
-        {% set ns = namespace(count = 1) %}
-        <div align="center" class="choice_box">
-          <h1>{{ question[0] }}. {{ question[1] }}</h1>
-          {% for answer in answers: %}
-            {% if answer[0] == question[0]%}
-            <input type="radio" id="answer_{{ ns.count }}"  name="choice_box_element{{ question[0] }}" value="{{ ns.count }}">
-            <label for="answer_{{ ns.count }}">{{ answer[1] }}</label><br>
-              {% set ns.count = ns.count+1 %}
-            {% endif %}
-          {% endfor %}
-        </div><br>
+    {% if isTestFinished %}
+    <div align="center" class="choice_box">
+      <h1>{{ test_result }}</h1>
+    </div>
+    {% else %}
+    <form>
+      {% for question in questions: %}
+      {% set ns = namespace(count = 1) %}
+      <div align="center" class="choice_box">
+        <h1>{{ question[0] }}. {{ question[1] }}</h1>
+        {% for answer in answers: %}
+        {% if answer[0] == question[0]%}
+        <input type="radio" id="answer_{{ ns.count }}"  name="choice_box_element{{ question[0] }}" value="{{ ns.count }}">
+        <label for="answer_{{ ns.count }}">{{ answer[1] }}</label><br>
+        {% set ns.count = ns.count+1 %}
+        {% endif %}
         {% endfor %}
-        <div align="center"><button type="submit">Проверить</button></div>
-      </form>
+      </div><br>
+      {% endfor %}
+      <div align="center"><button type="submit">Проверить</button></div>
+    </form>
+    {% endif %}
   </body>
 </html>
