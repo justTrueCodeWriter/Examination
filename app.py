@@ -4,6 +4,7 @@ from src.exam_functions import getDataFromDatabase
 app = Flask(__name__)
 
 test_result = 0
+questions_count = 0
 
 @app.route('/')
 def index():
@@ -18,7 +19,9 @@ def test1():
     isTestFinished = False
     questions, answers = getDataFromDatabase(1) 
     global test_result
+    global questios_count
     test_result = 0
+    questions_count = len(questions)
     for question in questions:
         if (request.args.get(f"choice_box_element{question[0]}")):
             isTestFinished = True
@@ -26,7 +29,7 @@ def test1():
             test_result+=1
 
     print(test_result)
-    return render_template("test.html", questions=questions, answers=answers, isTestFinished=isTestFinished, test_result=test_result) 
+    return render_template("test.html", questions=questions, answers=answers, isTestFinished=isTestFinished, test_result=test_result, questions_count=questions_count) 
 
 @app.route('/test2')
 def test2():

@@ -58,7 +58,8 @@
   <body>
     {% if isTestFinished %}
     <div align="center" class="choice_box">
-      <h1>{{ test_result }}</h1>
+      <h1>Результат:</h1>
+      <h2>{{ test_result }}/{{ questions_count }}</h2>
     </div>
     {% else %}
     <form>
@@ -67,7 +68,7 @@
       <div align="center" class="choice_box">
         <h1>{{ question[0] }}. {{ question[1] }}</h1>
         {% for answer in answers: %}
-        {% if answer[0] == question[0]%}
+        {% if answer[0] == question[0] %}
         <input type="radio" id="answer_{{ ns.count }}"  name="choice_box_element{{ question[0] }}" value="{{ ns.count }}">
         <label for="answer_{{ ns.count }}">{{ answer[1] }}</label><br>
         {% set ns.count = ns.count+1 %}
