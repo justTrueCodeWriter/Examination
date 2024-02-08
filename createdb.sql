@@ -7,5 +7,6 @@ create table questions(
 create table answers(
   question_id integer,
   answer text,
+  answer_number integer,
   difficulty_level integer
 );
