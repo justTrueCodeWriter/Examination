@@ -1,12 +1,12 @@
 create table questions(
   question_id integer primary key,
   question text,
-  correct_answer_number integer,
   difficulty_level integer
 );
+
 create table answers(
   question_id integer,
   answer text,
-  answer_number integer,
+  is_correct boolean,
   difficulty_level integer
 );

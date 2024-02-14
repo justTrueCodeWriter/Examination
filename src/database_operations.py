@@ -8,7 +8,15 @@ def getDataFromDatabaseByQuery(sql_query: str) -> list:
     connect.close()
     return data
 
-def getDataFromDatabase(difficulty_level: int): 
+def getDataFromDatabase(difficulty_level: int) -> tuple: 
     questions = getDataFromDatabaseByQuery(f"select * from questions where difficulty_level={difficulty_level}")
     answers = getDataFromDatabaseByQuery(f"select * from answers where difficulty_level={difficulty_level}")
     return questions, answers
+
+def getAmountOfCorrectAnswers(answers: list[str]) -> int:
+    counter = 0
+    for answer in answers:
+        if (bool(answer[2]) == True):
+            counter += 1;
+    print(f"Amount: {counter}")
+    return counter

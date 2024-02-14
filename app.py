@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-from src.exam_functions import getDataFromDatabase
+from src.database_operations import getDataFromDatabase, getAmountOfCorrectAnswers
 
 app = Flask(__name__)
 
@@ -21,15 +21,17 @@ def test1():
     global test_result
     global questios_count
     test_result = 0
-    questions_count = len(questions)
-    for question in questions:
-        if (request.args.get(f"choice_box_element{question[0]}")):
+    max_score = getAmountOfCorrectAnswers(answers) 
+    answer_id = 1
+    for answer in answers:
+        if (request.args.get(f"choice_box_element{answer_id}")):
             isTestFinished = True
-        if (request.args.get(f"choice_box_element{question[0]}")==str(question[2])):
+        if ((bool(answer[2])==True) and (request.args.get(f"choice_box_element{answer_id}")==str(answer[2]))):
             test_result+=1
+        answer_id += 1
 
     print(test_result)
-    return render_template("test.html", questions=questions, answers=answers, isTestFinished=isTestFinished, test_result=test_result, questions_count=questions_count) 
+    return render_template("test.html", questions=questions, answers=answers, isTestFinished=isTestFinished, test_result=test_result, max_score=max_score) 
 
 @app.route('/test2')
 def test2():
