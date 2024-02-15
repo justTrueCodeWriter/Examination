@@ -6,11 +6,7 @@ def push_question(connect: sqlite3.Connection, cursor: sqlite3.Cursor) -> int:
     question = str(input())
     if (question=="exit"):
         return 0
-    print("correct_answer_number: ", end='')
-    correct_answer_number = int(input())
-    #print("difficulty_level: ", end='')
-    #difficulty_level = int(input())
-    cursor.execute(f"insert into questions (question, correct_answer_number, difficulty_level) values ('{question}', {correct_answer_number}, {sys.argv[2]})")
+    cursor.execute(f"insert into questions (question, difficulty_level) values ('{question}', {sys.argv[2]})")
     connect.commit()
     return 1
 
@@ -21,11 +17,9 @@ def push_answer(connect: sqlite3.Connection, cursor: sqlite3.Cursor) -> int:
     answer = str(input())
     if (answer=="exit"):
         return 0 
-    print("answer_number: ", end='')
-    answer_number = int(input())
-    #print("difficulty_level: ", end='')
-    #difficulty_level = int(input())
-    cursor.execute(f"insert into answers (question_id, answer, answer_number, difficulty_level) values ({question_id}, '{answer}', {answer_number}, {sys.argv[2]})")
+    print("is_correct: ", end='')
+    is_correct = int(input())
+    cursor.execute(f"insert into answers (question_id, answer, is_correct, difficulty_level) values ({question_id}, '{answer}', {is_correct}, {sys.argv[2]})")
     connect.commit()
     return 1
 
@@ -43,3 +37,5 @@ elif (sys.argv[1]=='answers'):
     while (isWorking != 0):
         isWorking = push_answer(connect, cursor)
     connect.close()
+else:
+    print("INCORRECT! Execute without required arguments!");
