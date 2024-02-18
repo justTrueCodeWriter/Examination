@@ -18,5 +18,4 @@ def getAmountOfCorrectAnswers(answers: list[str]) -> int:
     for answer in answers:
         if (bool(answer[2]) == True):
             counter += 1;
-    print(f"Amount: {counter}")
     return counter
