@@ -13,11 +13,9 @@ def checkTestResult(answers, isTestFinished: bool) -> bool:
     for answer in answers:
         if (request.args.get(f"choice_box_element{answer_id}")):
             isTestFinished = True
-        print(f"{request.args.get(f'choice_box_element{answer_id}')} = {answer[2]}")
-        if ((str(answer[2])=='1') and (request.args.get(f"choice_box_element{answer_id}")=='1')):
+        if (request.args.get(f"choice_box_element{answer_id}")=='1'):
             test_result+=1
         answer_id += 1
-    print(test_result)
     return isTestFinished
 
 @app.route('/')
