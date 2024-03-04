@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>Тест</title>
+    <title>---</title>
     <meta charset="UTF-8">
     <style>
        @import url('https://fonts.googleapis.com/css2?family=Poiret+One&display=swap');
@@ -56,30 +56,8 @@
     </style>
   </head>
   <body>
-    {% if isTestFinished %}
     <div align="center" class="choice_box">
-      <h1>Результат:</h1>
-      <h2>{{ test_result }}/{{ max_score }}</h2>
+      <h1>{{ message }}</h1>
     </div>
-    {% else %}
-    <form>
-      {% set nsq = namespace(questions_count = 1) %}
-      {% for question in questions: %}
-      {% set ns = namespace(answers_count = 1) %}
-      <div align="center" class="choice_box">
-        <h1>{{ nsq.questions_count }}. {{ question[1] }}</h1>
-        {% for answer in answers: %}
-        {% if answer[0] == nsq.questions_count %}
-        <input type="checkbox" id="answer_{{ ns.answers_count }}"  name="choice_box_element{{ nsq.questions_count }}" value="{{answer[2]}}">
-        <label for="answer_{{ ns.answers_count }}">{{ answer[1] }}</label><br>
-        {% set ns.answers_count = ns.answers_count+1 %}
-        {% endif %}
-        {% endfor %}
-      </div><br>
-      {% set nsq.questions_count = nsq.questions_count+1 %}
-      {% endfor %}
-      <div align="center"><button type="submit">Проверить</button></div>
-    </form>
-    {% endif %}
   </body>
 </html>
